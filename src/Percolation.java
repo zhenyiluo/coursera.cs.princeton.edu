@@ -42,7 +42,7 @@ public class Percolation {
 		for (int k = 0; k < 4; k++) {
 			int x = i - 1 + dx[k];
 			int y = j - 1 + dy[k];
-			if (isOutOfRange(x, y)) {
+			if (isOutOfRange(x, y) || !isOpen(x+1, y+1)) {
 				continue;
 			}
 			int neighborIndex = x * col + y;
