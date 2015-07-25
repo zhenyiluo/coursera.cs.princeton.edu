@@ -1,12 +1,12 @@
 public class Percolation {
 
-	WeightedQuickUnionUF wquf;
-	WeightedQuickUnionUF wqufFull;
-	boolean[][] isOpenMark;
-	int col = 0;
-	int row = 0;
-	final static int[] dx = { -1, 1, 0, 0 };
-	final static int[] dy = { 0, 0, -1, 1 };
+	private WeightedQuickUnionUF wquf;
+	private WeightedQuickUnionUF wqufFull;
+	private boolean[][] isOpenMark;
+	private int col = 0;
+	private int row = 0;
+	private final static int[] dx = { -1, 1, 0, 0 };
+	private final static int[] dy = { 0, 0, -1, 1 };
 
 	// create N-by-N grid, with all sites blocked
 	public Percolation(int N) {
@@ -42,7 +42,7 @@ public class Percolation {
 		for (int k = 0; k < 4; k++) {
 			int x = i - 1 + dx[k];
 			int y = j - 1 + dy[k];
-			if (isOutOfRange(x, y) || !isOpen(x+1, y+1)) {
+			if (isOutOfRange(x, y) || !isOpen(x + 1, y + 1)) {
 				continue;
 			}
 			int neighborIndex = x * col + y;
