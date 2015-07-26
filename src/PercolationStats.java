@@ -1,4 +1,3 @@
-
 public class PercolationStats {
 	// perform T independent experiments on an N-by-N grid
 	private double[] result;
@@ -37,7 +36,7 @@ public class PercolationStats {
 		double u = mean();
 		double ret = 0;
 		for (double d : result) {
-			ret += Math.pow(d - u, 2);
+			ret += (d - u) * (d - u); 
 		}
 		ret /= result.length - 1;
 		return Math.sqrt(ret);

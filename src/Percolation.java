@@ -5,8 +5,8 @@ public class Percolation {
 	private boolean[][] isOpenMark;
 	private int col = 0;
 	private int row = 0;
-	private final static int[] dx = { -1, 1, 0, 0 };
-	private final static int[] dy = { 0, 0, -1, 1 };
+	private static final int[] DX = { -1, 1, 0, 0 };
+	private static final int[] DY = { 0, 0, -1, 1 };
 
 	// create N-by-N grid, with all sites blocked
 	public Percolation(int N) {
@@ -19,14 +19,6 @@ public class Percolation {
 		wqufFull = new WeightedQuickUnionUF(N * N + 1);
 		isOpenMark = new boolean[N][N];
 
-		for (int j = 0; j < col; j++) {
-			wquf.union(j, row * col);
-			wqufFull.union(j, row * col);
-		}
-		int i = row - 1;
-		for (int j = 0; j < col; j++) {
-			wquf.union(i * col + j, row * col + 1);
-		}
 	}
 
 	// open site (row i, column j) if it is not open already
@@ -39,9 +31,16 @@ public class Percolation {
 		}
 		isOpenMark[i - 1][j - 1] = true;
 		int index = (i - 1) * col + j - 1;
+		if(i == 1){
+			wquf.union(index, row * col);
+			wqufFull.union(index, row * col);
+		}
+		if(i == row){
+			wquf.union(index, row * col + 1);
+		}
 		for (int k = 0; k < 4; k++) {
-			int x = i - 1 + dx[k];
-			int y = j - 1 + dy[k];
+			int x = i - 1 + DX[k];
+			int y = j - 1 + DY[k];
 			if (isOutOfRange(x, y) || !isOpen(x + 1, y + 1)) {
 				continue;
 			}
