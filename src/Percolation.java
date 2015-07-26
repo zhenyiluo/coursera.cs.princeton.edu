@@ -1,12 +1,12 @@
 public class Percolation {
 
+	private static final int[] DX = { -1, 1, 0, 0 };
+	private static final int[] DY = { 0, 0, -1, 1 };
 	private WeightedQuickUnionUF wquf;
 	private WeightedQuickUnionUF wqufFull;
 	private boolean[][] isOpenMark;
 	private int col = 0;
 	private int row = 0;
-	private static final int[] DX = { -1, 1, 0, 0 };
-	private static final int[] DY = { 0, 0, -1, 1 };
 
 	// create N-by-N grid, with all sites blocked
 	public Percolation(int N) {
@@ -31,11 +31,11 @@ public class Percolation {
 		}
 		isOpenMark[i - 1][j - 1] = true;
 		int index = (i - 1) * col + j - 1;
-		if(i == 1){
+		if (i == 1) {
 			wquf.union(index, row * col);
 			wqufFull.union(index, row * col);
 		}
-		if(i == row){
+		if (i == row) {
 			wquf.union(index, row * col + 1);
 		}
 		for (int k = 0; k < 4; k++) {
